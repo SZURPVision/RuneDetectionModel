@@ -181,28 +181,38 @@ make -j$(nproc)
 
 ### 2. 测试脚本使用教程
 
+#### 转换格式
+```bash
+ovc model/model-0624.onnx --output_model model/model-0624.xml
+```
+
+
 #### (1) 快速图片/目录批量推理
 ```bash
 # 推理指定目录中的所有图片并保存可视化结果至 output_dir
 ./build/fivepoints_infer model/model-0624.onnx path/to/images_dir output_dir --device GPU
+./build/fivepoints_infer model/model-0624.xml path/to/images_dir output_dir --device GPU
 ```
 
 #### (2) 视频流推理与结果保存
 ```bash
 # 对视频进行推理并生成标注视频
 ./build/fivepoints_infer model/model-0624.onnx video/test_video.avi result_video.avi --device GPU
+./build/fivepoints_infer model/model-0624.xml video/test_video.avi result_video.avi --device GPU
 ```
 
 #### (3) 纯基准性能测试模式 (Benchmark / 不落盘)
 ```bash
 # 测试 GPU 吞吐性能与端到端延迟统计 (输出 P50/P90/P99 延迟报告)
 ./build/fivepoints_infer model/model-0624.onnx video/test_video.avi --device GPU --benchmark
+./build/fivepoints_infer model/model-0624.xml video/test_video.avi --device GPU --benchmark
 ```
 
 #### (4) CPU 模式测试
 ```bash
 # 使用 CPU 进行推理
 ./build/fivepoints_infer model/model-0624.onnx video/test_video.avi --device CPU --benchmark
+./build/fivepoints_infer model/model-0624.xml video/test_video.avi --device CPU --benchmark
 ```
 
 ---
@@ -258,4 +268,6 @@ rune_open_source/
 
 - 特别感谢 **RobotPilots 战队视觉组全体成员** 在数据集从 0 到 30k 标注工作中的付出与坚守！
 - 欢迎各位 RoboMaster 参赛战队与计算机视觉爱好者交流讨论、提出 Issue 或 PR。
+- 本次开源文件的最终解释权归 深圳大学RobotPilots战队所有。
+- 开源目的在于加强参赛队之间交流，有助于提高自身和其他参赛队的水平。
 - 本项目遵循 **MIT 开源协议**。
